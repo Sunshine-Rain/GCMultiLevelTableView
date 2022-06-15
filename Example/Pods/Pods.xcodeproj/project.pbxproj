@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0E36DED64B3A1ADC847E04F46C5CD134 /* GCMultiLevelTableView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1705533ABEE23E76A026284D2F69AB2B /* GCMultiLevelTableView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EEE9B1EB1156CF66404342756246C14 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		2792D1C17934BB5CF72F593F08CDBBFA /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B65522AA2889A6C8A4734ADE43ACC85 /* ReplaceMe.swift */; };
+		14F94A5A285979E200ACD38A /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 14F94A59285979E200ACD38A /* .gitkeep */; };
+		14F94A5D285979F100ACD38A /* MultiLevelTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F94A5B285979F100ACD38A /* MultiLevelTableView.swift */; };
+		14F94A5E285979F100ACD38A /* MultiTableViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F94A5C285979F100ACD38A /* MultiTableViewData.swift */; };
 		337FE804D206426F9EB0F5709F976308 /* Pods-GCMultiLevelTableView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802D927735852EA2013A20568A11712 /* Pods-GCMultiLevelTableView_Tests-dummy.m */; };
 		36E8D7D1184912763BB1FA4625479724 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		71B5B5D137C1B9D8D88F032CCF9777E3 /* Pods-GCMultiLevelTableView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18839561A651C6DE241D1F187273F6E6 /* Pods-GCMultiLevelTableView_Example-dummy.m */; };
@@ -40,6 +42,9 @@
 		04D5B8EE150DC77086225FC859B454A1 /* GCMultiLevelTableView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GCMultiLevelTableView.modulemap; sourceTree = "<group>"; };
 		093A8D4E7279C7F38046B211BB0D7570 /* Pods-GCMultiLevelTableView_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GCMultiLevelTableView_Example-Info.plist"; sourceTree = "<group>"; };
 		0CD5FCEE65D98BBB17EC546911432132 /* GCMultiLevelTableView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GCMultiLevelTableView-prefix.pch"; sourceTree = "<group>"; };
+		14F94A59285979E200ACD38A /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		14F94A5B285979F100ACD38A /* MultiLevelTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLevelTableView.swift; sourceTree = "<group>"; };
+		14F94A5C285979F100ACD38A /* MultiTableViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiTableViewData.swift; sourceTree = "<group>"; };
 		1705533ABEE23E76A026284D2F69AB2B /* GCMultiLevelTableView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GCMultiLevelTableView-umbrella.h"; sourceTree = "<group>"; };
 		18839561A651C6DE241D1F187273F6E6 /* Pods-GCMultiLevelTableView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GCMultiLevelTableView_Example-dummy.m"; sourceTree = "<group>"; };
 		231BD8D13262561CDD796796549A1312 /* Pods-GCMultiLevelTableView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GCMultiLevelTableView_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -47,18 +52,17 @@
 		3272B19D86605BAF4042AD65A7E4D961 /* Pods-GCMultiLevelTableView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GCMultiLevelTableView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3802D927735852EA2013A20568A11712 /* Pods-GCMultiLevelTableView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GCMultiLevelTableView_Tests-dummy.m"; sourceTree = "<group>"; };
 		389C930070324E9E5009B9418BFAFD38 /* GCMultiLevelTableView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GCMultiLevelTableView.release.xcconfig; sourceTree = "<group>"; };
-		3C77415C2BBBA7A09B9756C47A15A4F6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		3C77415C2BBBA7A09B9756C47A15A4F6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F1C4287E7AF540284F9C09109C018D5 /* Pods-GCMultiLevelTableView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GCMultiLevelTableView_Example.modulemap"; sourceTree = "<group>"; };
-		561F90D5BC6C2969DA4DAE526B21EE3A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		561F90D5BC6C2969DA4DAE526B21EE3A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5A109535C2B7D34B3CC2A7FFEBFE4B74 /* Pods-GCMultiLevelTableView_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GCMultiLevelTableView_Example"; path = Pods_GCMultiLevelTableView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62994DFCE2B00597B5BF798A224C9D72 /* GCMultiLevelTableView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GCMultiLevelTableView-dummy.m"; sourceTree = "<group>"; };
-		67ED9D394A5CE7BAEB7F50A4BF387AE3 /* GCMultiLevelTableView */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GCMultiLevelTableView; path = GCMultiLevelTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67ED9D394A5CE7BAEB7F50A4BF387AE3 /* GCMultiLevelTableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GCMultiLevelTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		73C052CDF051DAA5EBAF9A9EDF58DD9F /* GCMultiLevelTableView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GCMultiLevelTableView-Info.plist"; sourceTree = "<group>"; };
 		7A2834BE03602EC44B5FC975705DFE75 /* Pods-GCMultiLevelTableView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GCMultiLevelTableView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8B65522AA2889A6C8A4734ADE43ACC85 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GCMultiLevelTableView/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		8D8F74575D25E00AB4E28F41EC5386BC /* Pods-GCMultiLevelTableView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GCMultiLevelTableView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A5DA1F604F42478EC20D962DD63EA9AA /* GCMultiLevelTableView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GCMultiLevelTableView.debug.xcconfig; sourceTree = "<group>"; };
 		B2327803E7D574B5F19DE1240CA0CD05 /* Pods-GCMultiLevelTableView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GCMultiLevelTableView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		B561AF0613BC14341F6027F432E443F5 /* Pods-GCMultiLevelTableView_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GCMultiLevelTableView_Tests-Info.plist"; sourceTree = "<group>"; };
@@ -68,7 +72,7 @@
 		EB816E99702DAF46BA3D2DEA1B2C439D /* Pods-GCMultiLevelTableView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GCMultiLevelTableView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		ECAA237B0071051754F12E68D5291407 /* Pods-GCMultiLevelTableView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GCMultiLevelTableView_Tests.modulemap"; sourceTree = "<group>"; };
 		F27E243E349A12671A633517E2D9A2F0 /* Pods-GCMultiLevelTableView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GCMultiLevelTableView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F292040CB20EFDFFA48A3010C842B0ED /* GCMultiLevelTableView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = GCMultiLevelTableView.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F292040CB20EFDFFA48A3010C842B0ED /* GCMultiLevelTableView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = GCMultiLevelTableView.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F458A236FB5DFFD631B1F5E6B486751F /* Pods-GCMultiLevelTableView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GCMultiLevelTableView_Example-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +104,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14F94A58285979E200ACD38A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				14F94A5B285979F100ACD38A /* MultiLevelTableView.swift */,
+				14F94A5C285979F100ACD38A /* MultiTableViewData.swift */,
+				14F94A59285979E200ACD38A /* .gitkeep */,
+			);
+			name = Classes;
+			path = GCMultiLevelTableView/Classes;
+			sourceTree = "<group>";
+		};
 		291B73679E5AB15CF8C97E4BCA79CF4E /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +126,7 @@
 		4D50AD971D665511FBF8BAEB103D65FC /* GCMultiLevelTableView */ = {
 			isa = PBXGroup;
 			children = (
-				8B65522AA2889A6C8A4734ADE43ACC85 /* ReplaceMe.swift */,
+				14F94A58285979E200ACD38A /* Classes */,
 				5F22DBA795FC6D490513FEFD97B557B0 /* Pod */,
 				9478D7C178CA497DF32366D07CF3D4F2 /* Support Files */,
 			);
@@ -216,7 +231,7 @@
 		E68D66CEE80DBADEBA73E5FEDC25E5B3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				67ED9D394A5CE7BAEB7F50A4BF387AE3 /* GCMultiLevelTableView */,
+				67ED9D394A5CE7BAEB7F50A4BF387AE3 /* GCMultiLevelTableView.framework */,
 				5A109535C2B7D34B3CC2A7FFEBFE4B74 /* Pods-GCMultiLevelTableView_Example */,
 				E9C6D6D0246BAA73A37C21C7BA0F3C9E /* Pods-GCMultiLevelTableView_Tests */,
 			);
@@ -287,7 +302,7 @@
 			);
 			name = GCMultiLevelTableView;
 			productName = GCMultiLevelTableView;
-			productReference = 67ED9D394A5CE7BAEB7F50A4BF387AE3 /* GCMultiLevelTableView */;
+			productReference = 67ED9D394A5CE7BAEB7F50A4BF387AE3 /* GCMultiLevelTableView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C73191D90F8579A5A8901B22DFFBDD6F /* Pods-GCMultiLevelTableView_Tests */ = {
@@ -317,6 +332,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					917252C5FDED68F80BC9F547459716BC = {
+						LastSwiftMigration = 1330;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -343,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F94A5A285979E200ACD38A /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,8 +396,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F94A5E285979F100ACD38A /* MultiTableViewData.swift in Sources */,
+				14F94A5D285979F100ACD38A /* MultiLevelTableView.swift in Sources */,
 				ADCDF4AF486D308006F9485FECDD41B0 /* GCMultiLevelTableView-dummy.m in Sources */,
-				2792D1C17934BB5CF72F593F08CDBBFA /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 389C930070324E9E5009B9418BFAFD38 /* GCMultiLevelTableView.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -656,8 +679,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -667,6 +689,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5DA1F604F42478EC20D962DD63EA9AA /* GCMultiLevelTableView.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -686,6 +709,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
