@@ -1,0 +1,16 @@
+PODS:
+  - GCMultiLevelTableView (0.1.0)
+
+DEPENDENCIES:
+  - GCMultiLevelTableView (from `../`)
+
+EXTERNAL SOURCES:
+  GCMultiLevelTableView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GCMultiLevelTableView: 2f823581f45097fc2608bee7aae4ee1ea23a382f
+
+PODFILE CHECKSUM: e4576deccb02ea4a3c6dea9e9e4dc20f9a1c3ebc
+
+COCOAPODS: 1.11.3

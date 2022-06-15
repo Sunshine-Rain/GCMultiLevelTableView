@@ -1,0 +1,6 @@
+framework module Pods_GCMultiLevelTableView_Tests {
+  umbrella header "Pods-GCMultiLevelTableView_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

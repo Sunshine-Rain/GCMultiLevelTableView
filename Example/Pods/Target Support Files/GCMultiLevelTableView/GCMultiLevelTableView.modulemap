@@ -1,0 +1,6 @@
+framework module GCMultiLevelTableView {
+  umbrella header "GCMultiLevelTableView-umbrella.h"
+
+  export *
+  module * { export * }
+}
