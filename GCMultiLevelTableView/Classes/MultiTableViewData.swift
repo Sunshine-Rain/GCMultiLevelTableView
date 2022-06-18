@@ -8,6 +8,11 @@
 import Foundation
 
 open class MultiTableViewData {
+    public enum SizeChange {
+        case increase(_ count: Int)
+        case decrease(_ count: Int)
+    }
+    
     open var identifier: String
     open var data: Any
     open weak var parent: MultiTableViewData?
@@ -15,7 +20,10 @@ open class MultiTableViewData {
     
     open var isFold: Bool {
         didSet {
-            updateSizeBubbleUp()
+            let size = calculateCacheDispalySize(childs)
+            updateSizeBubbleUp(
+                value: isFold ? .decrease(size) : .increase(size)
+            )
         }
     }
     open var autoFold: Bool
@@ -77,35 +85,87 @@ open class MultiTableViewData {
     open func appendChild(_ data: MultiTableViewData) {
         data.parent = self
         childs.append(data)
-        updateSizeBubbleUp()
+        updateSizeBubbleUp(
+            value: .increase(data.displaySize())
+        )
     }
     
     open func appendChilds(_ datas: [MultiTableViewData]) {
         datas.forEach { $0.parent = self }
         childs.append(contentsOf: datas)
-        updateSizeBubbleUp()
+        updateSizeBubbleUp(
+            value: .increase(calculateCacheDispalySize(datas))
+        )
     }
     
     open func insertChild(_ data: MultiTableViewData, at index: Int) {
         data.parent = self
         childs.insert(data, at: index)
-        updateSizeBubbleUp()
+        updateSizeBubbleUp(
+            value: .increase(data.displaySize())
+        )
     }
     
+    open func insertChilds(_ datas: [MultiTableViewData], at index: Int) {
+        datas.forEach { d in
+            d.parent = self
+        }
+        childs.insert(contentsOf: datas, at: 0)
+        updateSizeBubbleUp(
+            value: .increase(calculateCacheDispalySize(datas))
+        )
+    }
+    
+    @discardableResult
     open func removeChildAt(_ index: Int) -> MultiTableViewData {
         let data = childs.remove(at: index)
-        updateSizeBubbleUp()
+        updateSizeBubbleUp(
+            value: .decrease(data.displaySize())
+        )
         return data
     }
     
-    open func updateSizeBubbleUp() {
+    @discardableResult
+    open func removeAllChilds() -> [MultiTableViewData] {
+        return replaceChilds([])
+    }
+    
+    @discardableResult
+    open func replaceChilds(_ newChilds: [MultiTableViewData]) -> [MultiTableViewData] {
+        let originalChilds = childs
+        childs = newChilds
+        
+        let originalSize = calculateCacheDispalySize(originalChilds)
+        let newSize = calculateCacheDispalySize(newChilds)
+        let delta = newSize - originalSize
+        updateSizeBubbleUp(
+            value: delta >= 0 ? .increase(delta) : .decrease(-delta)
+        )
+        return originalChilds
+    }
+    
+    open func updateSizeBubbleUp(value: SizeChange) {
         var updateNode: MultiTableViewData? = self
         while updateNode != nil {
-            updateNode?._totalSize = Self.sizeFor(updateNode!)
+            switch value {
+            case .increase(let cnt):
+                updateNode!._totalSize += cnt
+            case .decrease(let cnt):
+                updateNode!._totalSize -= cnt
+            }
             updateNode = updateNode?.parent
         }
     }
     
+    /// Calculate display size using 'func displaySize()'
+    @inline(__always)
+    private func calculateCacheDispalySize(_ items: [MultiTableViewData]) -> Int {
+        return items.reduce(0) { partialResult, d in
+            return partialResult + d.displaySize()
+        }
+    }
+    
+    /// Re Calculate Size
     public static func sizeFor(_ data: MultiTableViewData) -> Int {
         if data.isFold { return 1 }
         return data.childs.reduce(1) { partialResult, data in

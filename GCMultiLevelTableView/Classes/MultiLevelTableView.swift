@@ -24,6 +24,12 @@ open class MultiLevelTableView: UITableView {
         }
     }
     
+    open var optimizeFold: Bool = true
+    
+    open var optimizeFoldCount: Int = 500
+    
+    open var reloadAnimationType: UITableView.RowAnimation = .automatic
+    
     open var insertAnimationType: UITableView.RowAnimation = .automatic
     
     open var deleteAnimationType: UITableView.RowAnimation = .automatic
@@ -95,44 +101,18 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = getDataFor(indexPath)
-        var displaySize = data.displaySize()
         if data.canFold && data.autoFold && data.childs.count > 1 {
-            if #available(iOS 11.0, *) {
+            let optimized = handleDataFoldOptimized(data)
+            if optimized.0 { return }
+            
+            if #available(iOS 11.0, *), false {
                 tableView.performBatchUpdates {
-                    data.isFold.toggle()
-                    self.calculateSize()
-                    if data.isFold == false { displaySize = data.displaySize() }
-                    
-                    let lower = indexPath.row + 1
-                    let upper = indexPath.row + displaySize
-                    let indexPaths = Range(uncheckedBounds: (lower, upper)).map { index in
-                        IndexPath(row: index, section: indexPath.section)
-                    }
-                    if data.isFold {
-                        tableView.deleteRows(at: indexPaths, with: deleteAnimationType)
-                    }
-                    else {
-                        tableView.insertRows(at: indexPaths, with: insertAnimationType)
-                    }
+                    self.handleDataFoldAndReload(data, indexPath: indexPath , displaySize: optimized.1)
                 }
             }
             else {
                 tableView.beginUpdates()
-                data.isFold.toggle()
-                self.calculateSize()
-                if data.isFold == false { displaySize = data.displaySize() }
-                
-                let lower = indexPath.row + 1
-                let upper = indexPath.row + displaySize
-                let indexPaths = Range(uncheckedBounds: (lower, upper)).map { index in
-                    IndexPath(row: index, section: indexPath.section)
-                }
-                if data.isFold {
-                    tableView.deleteRows(at: indexPaths, with: deleteAnimationType)
-                }
-                else {
-                    tableView.insertRows(at: indexPaths, with: insertAnimationType)
-                }
+                self.handleDataFoldAndReload(data, indexPath: indexPath , displaySize: optimized.1)
                 tableView.endUpdates()
             }
         }
@@ -142,5 +122,34 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    /// TableView update for optimized.
+    private func handleDataFoldOptimized(_ data: MultiTableViewData) -> (Bool, Int) {
+        var displaySize = data.displaySize()
+        data.isFold.toggle()
+        self.calculateSize()
+        if data.isFold == false { displaySize = data.displaySize() }
+
+        if optimizeFold && displaySize > optimizeFoldCount {
+            reloadData()
+            return (true, -1)
+        }
+        
+        return (false, displaySize)
+    }
     
+    /// TableView update for non optimized.
+    private func handleDataFoldAndReload(_ data: MultiTableViewData, indexPath: IndexPath, displaySize: Int) {
+        let lower = indexPath.row + 1
+        let upper = indexPath.row + displaySize
+        let indexPaths = Range(uncheckedBounds: (lower, upper)).map { index in
+            IndexPath(row: index, section: indexPath.section)
+        }
+        if data.isFold {
+            self.deleteRows(at: indexPaths, with: deleteAnimationType)
+        }
+        else {
+            self.insertRows(at: indexPaths, with: insertAnimationType)
+        }
+        self.reloadRows(at: [indexPath], with: reloadAnimationType)
+    }
 }
