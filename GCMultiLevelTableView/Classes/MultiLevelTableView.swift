@@ -103,7 +103,10 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
         let data = getDataFor(indexPath)
         if data.canFold && data.autoFold && data.childs.count > 1 {
             let optimized = handleDataFoldOptimized(data)
-            if optimized.0 { return }
+            if optimized.0 {
+                callDelegateDidSelectedRowAt(indexPath: indexPath, data: data)
+                return
+            }
             
             if #available(iOS 11.0, *), false {
                 tableView.performBatchUpdates {
@@ -117,9 +120,7 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-        if let delegate = multiLevelDelegate {
-            delegate.multiTableView(self, didSelectRowAt: indexPath, data: data)
-        }
+        callDelegateDidSelectedRowAt(indexPath: indexPath, data: data)
     }
     
     /// TableView update for optimized.
@@ -151,5 +152,11 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
             self.insertRows(at: indexPaths, with: insertAnimationType)
         }
         self.reloadRows(at: [indexPath], with: reloadAnimationType)
+    }
+    
+    private func callDelegateDidSelectedRowAt(indexPath: IndexPath, data: MultiTableViewData) {
+        if let delegate = multiLevelDelegate {
+            delegate.multiTableView(self, didSelectRowAt: indexPath, data: data)
+        }
     }
 }

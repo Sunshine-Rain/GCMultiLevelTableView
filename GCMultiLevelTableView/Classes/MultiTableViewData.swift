@@ -20,10 +20,7 @@ open class MultiTableViewData {
     
     open var isFold: Bool {
         didSet {
-            let size = calculateCacheDispalySize(childs)
-            updateSizeBubbleUp(
-                value: isFold ? .decrease(size) : .increase(size)
-            )
+            reSizeBubbleUp()
         }
     }
     open var autoFold: Bool
@@ -31,6 +28,7 @@ open class MultiTableViewData {
     
     open var tag: Int = 0
     
+    private var _firstOpen = true
     private var _totalSize: Int = 0
     
     public init(identifier: String,
@@ -49,7 +47,7 @@ open class MultiTableViewData {
         self.autoFold = autoFold
         self.tag = tag
         
-        self._totalSize = Self.sizeFor(self)
+        Self.sizeFor(self)
         
         self.childs.forEach { $0.parent = self }
     }
@@ -85,6 +83,7 @@ open class MultiTableViewData {
     open func appendChild(_ data: MultiTableViewData) {
         data.parent = self
         childs.append(data)
+        
         updateSizeBubbleUp(
             value: .increase(data.displaySize())
         )
@@ -93,6 +92,7 @@ open class MultiTableViewData {
     open func appendChilds(_ datas: [MultiTableViewData]) {
         datas.forEach { $0.parent = self }
         childs.append(contentsOf: datas)
+        
         updateSizeBubbleUp(
             value: .increase(calculateCacheDispalySize(datas))
         )
@@ -101,6 +101,7 @@ open class MultiTableViewData {
     open func insertChild(_ data: MultiTableViewData, at index: Int) {
         data.parent = self
         childs.insert(data, at: index)
+        
         updateSizeBubbleUp(
             value: .increase(data.displaySize())
         )
@@ -111,6 +112,7 @@ open class MultiTableViewData {
             d.parent = self
         }
         childs.insert(contentsOf: datas, at: 0)
+        
         updateSizeBubbleUp(
             value: .increase(calculateCacheDispalySize(datas))
         )
@@ -119,6 +121,7 @@ open class MultiTableViewData {
     @discardableResult
     open func removeChildAt(_ index: Int) -> MultiTableViewData {
         let data = childs.remove(at: index)
+        
         updateSizeBubbleUp(
             value: .decrease(data.displaySize())
         )
@@ -135,6 +138,8 @@ open class MultiTableViewData {
         let originalChilds = childs
         childs = newChilds
         
+        if isFold { return originalChilds }
+        
         let originalSize = calculateCacheDispalySize(originalChilds)
         let newSize = calculateCacheDispalySize(newChilds)
         let delta = newSize - originalSize
@@ -144,14 +149,33 @@ open class MultiTableViewData {
         return originalChilds
     }
     
-    open func updateSizeBubbleUp(value: SizeChange) {
+    open func updateSizeBubbleUp(value: SizeChange, updateSelf: Bool = true) {
+        /*
         var updateNode: MultiTableViewData? = self
         while updateNode != nil {
+            updateNode?._totalSize = Self.sizeFor(updateNode!)
+            updateNode = updateNode?.parent
+        }
+         */
+        
+        var updateNode: MultiTableViewData? = (updateSelf ? self : self.parent)
+        while updateNode != nil && !updateNode!.isFold {
             switch value {
             case .increase(let cnt):
                 updateNode!._totalSize += cnt
             case .decrease(let cnt):
                 updateNode!._totalSize -= cnt
+            }
+            updateNode = updateNode?.parent
+        }
+    }
+    
+    open func reSizeBubbleUp() {
+        var updateNode: MultiTableViewData? = self
+        while updateNode != nil {
+            if updateNode?.parent == nil {
+                Self.sizeFor(updateNode!)
+                break
             }
             updateNode = updateNode?.parent
         }
@@ -166,10 +190,17 @@ open class MultiTableViewData {
     }
     
     /// Re Calculate Size
+    @discardableResult
     public static func sizeFor(_ data: MultiTableViewData) -> Int {
-        if data.isFold { return 1 }
-        return data.childs.reduce(1) { partialResult, data in
+        if data.isFold {
+            data._totalSize = 1
+            return 1
+        }
+        
+        let size = data.childs.reduce(1) { partialResult, data in
             return partialResult + Self.sizeFor(data)
         }
+        data._totalSize = size
+        return size
     }
 }
