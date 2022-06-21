@@ -28,6 +28,8 @@ open class MultiLevelTableView: UITableView {
     
     open var optimizeFoldCount: Int = 500
     
+    open var autoFoldLeastChildCount: Int = 1
+    
     open var reloadAnimationType: UITableView.RowAnimation = .automatic
     
     open var insertAnimationType: UITableView.RowAnimation = .automatic
@@ -101,7 +103,7 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = getDataFor(indexPath)
-        if data.canFold && data.autoFold && data.childs.count > 1 {
+        if data.canFold && data.autoFold && data.childs.count >= autoFoldLeastChildCount {
             let optimized = handleDataFoldOptimized(data)
             if optimized.0 {
                 callDelegateDidSelectedRowAt(indexPath: indexPath, data: data)
