@@ -110,7 +110,7 @@ extension MultiLevelTableView: UITableViewDataSource, UITableViewDelegate {
                 return
             }
             
-            if #available(iOS 11.0, *), false {
+            if #available(iOS 11.0, *) {
                 tableView.performBatchUpdates {
                     self.handleDataFoldAndReload(data, indexPath: indexPath , displaySize: optimized.1)
                 }
